@@ -1,0 +1,69 @@
+<!<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Star Social</title>
+
+
+	<!--BOOTSTRAP         -->
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="{% static 'socialapp/css/master.css' %}">
+
+	<!-- Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Amatic+SC&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+	<!-- NAVBAR -->
+	<nav class="navbar navbar-expand-lg navbar-light mynav" role = "navigation" , id ='navbar'>
+		<div class="container-fluid">
+			  <a class="navbar-brand bigbrand ms-4 me-5" href="{% url 'home' %}">Star Social</a>
+
+			  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggle-id" aria-controls="toggle-id" aria-expanded="false" aria-label="Toggle navigation">
+	             <span class="navbar-toggler-icon"></span>
+	          </button>
+		  
+			  <div class = "collapse navbar-collapse" id ="toggle-id">
+	
+			  	<ul class="navbar-nav navbar-right me-5">
+			  		{% if user.is_authenticated %}
+			  			<li class = "px-2"><a href="{% url 'posts:create' %}">Post</a></li>
+			  			<li class = "px-2"><a href="{% url 'groups:all' %}">Groups</a></li>
+			  			<li class = "px-2"><a href="{% url 'groups:create' %}">Create Group</a></li>
+			  			<li class = "px-2"><a href="{% url 'accounts:logout' %}">Logout</a></li>
+			  			<li class = "px-3"><a href="#">Welcome: {{user.username}}</a></li>
+			  		{% else %}
+			  				<!-- <li><a class = "nav navbar-nav navbar-right" href="{% url 'login' %}">Login</span></a></li> -->
+			  				<li class = "px-2"><a href="{% url 'groups:all' %}">Groups</a></li>
+				  			<li class = "px-2"><a href="{% url 'accounts:login'%}">Login</a></li>
+				  			<li class = "px-2"><a href="{% url 'accounts:signup'%}">Sign Up</a></li>
+			  		{% endif %}
+			  	</ul>
+			    
+			 </div>
+	  </div>
+	</nav>
+	<div class ="content container">
+		{% block content %}
+
+		{% endblock %}	
+	</div>
+</body>
+</html>
